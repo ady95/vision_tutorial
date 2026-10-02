@@ -21,7 +21,7 @@
 | [ch07_foundation](ch07_foundation) | 07. Vision Foundation Model | CLIP, DINOv2, Florence-2 |
 | [ch08_sam](ch08_sam) | 08. Segment Anything | SAM 2, SAM 3 |
 | [ch09_open_vocab](ch09_open_vocab) | 09. Open-Vocabulary Vision | Grounding DINO |
-| [ch10_vlm](ch10_vlm) | 10. Vision Language Model | Qwen3-VL |
+| [ch10_vlm](ch10_vlm) | 10. Vision Language Model | Qwen3.5 (2B·4B·9B), vLLM |
 | [ch11_deploy](ch11_deploy) | 11. Vision 모델 경량화와 배포 | Quantization, vLLM, ONNX, TensorRT |
 | [ch12_evaluation](ch12_evaluation) | 12. Vision 모델 평가 | 지표, VLM 평가, Benchmark |
 | [ch13_selection](ch13_selection) | 13. 어떤 Vision 알고리즘을 선택해야 하는가 | 비교 실험 |
@@ -72,7 +72,8 @@ python data/download_samples.py
 ## 실행 환경
 
 - Python 3.11 (3.10 이상)
-- NVIDIA GPU 권장: 03~09장 VRAM 8GB 이상, 10장 VLM은 16GB 이상
+- NVIDIA GPU: RTX 3060 12GB 기준으로 검증합니다. 24GB가 필요한 예제(Qwen3.5-9B 등)는 RTX 3090 24GB에서 검증했으며, 해당 README에 표시하고 12GB 대안을 함께 적습니다
+- vLLM 예제(10장~)는 Linux + NVIDIA GPU 환경을 기준으로 합니다
 - GPU가 없다면 01~02장은 CPU로 충분하고, 나머지는 Google Colab에서 실행할 수 있습니다
 
 ## 라이선스

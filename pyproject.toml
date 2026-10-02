@@ -33,11 +33,12 @@ foundation = [
 ocr = [
     "paddleocr",
 ]
+# Qwen3.5 — vLLM 서버는 Linux GPU 환경에 별도 설치 (pip install vllm)
 vlm = [
     "torch",
     "transformers",
     "accelerate",
-    "qwen-vl-utils",
+    "openai",
 ]
 deploy = [
     "onnx",

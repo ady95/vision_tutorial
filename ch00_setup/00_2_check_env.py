@@ -26,6 +26,8 @@ PACKAGES = [
     ("open_clip", "OpenCLIP", "07"),
     ("faiss", "FAISS", "07, 16"),
     ("paddleocr", "PaddleOCR", "16"),
+    ("openai", "OpenAI SDK", "10~"),
+    ("vllm", "vLLM", "10~"),
     ("onnxruntime", "ONNX Runtime", "11"),
 ]
 
