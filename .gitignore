@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# 환경 변수·비밀 정보
+.env
+.env.*
+
+# 내려받은 데이터와 실행 결과
+data/images/
+data/videos/
+data/datasets/
+outputs/
+runs/
+
+# 모델 가중치
+*.pt
+*.pth
+*.onnx
+*.engine
+*.safetensors
+*.gguf
+weights/
+
+# OS·에디터
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

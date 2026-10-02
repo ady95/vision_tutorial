@@ -1,0 +1,51 @@
+[project]
+name = "vision-tutorial"
+version = "0.1.0"
+description = "Vision 알고리즘 따라하기 — OpenCV부터 YOLO·SAM·VLM까지 예제 코드"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+# 버전은 각 장 실측 후 고정한다
+dependencies = [
+    "numpy",
+    "opencv-python",
+    "matplotlib",
+    "pillow",
+    "jupyter",
+]
+
+[project.optional-dependencies]
+dl = [
+    "torch",
+    "torchvision",
+    "timm",
+    "ultralytics",
+]
+foundation = [
+    "torch",
+    "torchvision",
+    "transformers",
+    "accelerate",
+    "open-clip-torch",
+    "faiss-cpu",
+]
+ocr = [
+    "paddleocr",
+]
+vlm = [
+    "torch",
+    "transformers",
+    "accelerate",
+    "qwen-vl-utils",
+]
+deploy = [
+    "onnx",
+    "onnxruntime",
+]
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = []
