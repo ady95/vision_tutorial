@@ -49,8 +49,10 @@ def check_gpu():
     if torch.cuda.is_available():
         for i in range(torch.cuda.device_count()):
             props = torch.cuda.get_device_properties(i)
-            vram_gb = props.total_memory / 1024**3
-            print(f"GPU {i} : {props.name} ({vram_gb:.1f} GB)")
+            free, total = torch.cuda.mem_get_info(i)
+            print(f"GPU {i} : {props.name} (전체 {total / 1024**3:.1f} GB, 사용 가능 {free / 1024**3:.1f} GB)")
+            if free / total < 0.5:
+                print(f"        다른 프로세스가 GPU {i} 메모리의 {1 - free / total:.0%}를 쓰고 있습니다 — nvidia-smi로 확인하세요")
         print(f"CUDA  : {torch.version.cuda}")
     elif getattr(torch.backends, "mps", None) and torch.backends.mps.is_available():
         print("GPU   : Apple MPS 사용 가능")
