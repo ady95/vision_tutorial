@@ -21,15 +21,16 @@
 | [ch07_foundation](ch07_foundation) | 07. Vision Foundation Model | CLIP, DINOv2, Florence-2 |
 | [ch08_sam](ch08_sam) | 08. Segment Anything | SAM 2, SAM 3 |
 | [ch09_open_vocab](ch09_open_vocab) | 09. Open-Vocabulary Vision | Grounding DINO |
-| [ch10_ocr](ch10_ocr) | 10. OCR과 Document Vision | PaddleOCR |
-| [ch11_vlm](ch11_vlm) | 11. Vision Language Model | Qwen3-VL |
-| [ch12_deploy](ch12_deploy) | 12. Vision 모델 경량화와 배포 | Quantization, vLLM, ONNX, TensorRT |
-| [ch13_evaluation](ch13_evaluation) | 13. Vision 모델 평가 | 지표, VLM 평가, Benchmark |
-| [ch14_selection](ch14_selection) | 14. 어떤 Vision 알고리즘을 선택해야 하는가 | 비교 실험 |
-| [ch15_hybrid](ch15_hybrid) | 15. Hybrid Vision System | Cascade, Routing |
-| [ch16_agent](ch16_agent) | 16. Vision Agent | VLM Tool Calling |
-| [ch17_projects](ch17_projects) | 17. 실전 프로젝트 | 종합 프로젝트 4종 |
+| [ch10_vlm](ch10_vlm) | 10. Vision Language Model | Qwen3-VL |
+| [ch11_deploy](ch11_deploy) | 11. Vision 모델 경량화와 배포 | Quantization, vLLM, ONNX, TensorRT |
+| [ch12_evaluation](ch12_evaluation) | 12. Vision 모델 평가 | 지표, VLM 평가, Benchmark |
+| [ch13_selection](ch13_selection) | 13. 어떤 Vision 알고리즘을 선택해야 하는가 | 비교 실험 |
+| [ch14_hybrid](ch14_hybrid) | 14. Hybrid Vision System | Cascade, Routing |
+| [ch15_agent](ch15_agent) | 15. Vision Agent | VLM Tool Calling |
+| [ch16_projects](ch16_projects) | 16. 실전 프로젝트 | 종합 프로젝트 4종 |
 | [data](data) | 공통 | 샘플 이미지·영상 내려받기 |
+
+> OCR은 이 책에서 따로 다루지 않습니다. 문자 인식과 Document AI는 「OCR 따라하기」([도서](https://wikidocs.net/book/21475), [예제 코드](https://github.com/ady95/ocr_tutorial))를 참고하세요.
 
 ## 시작하기
 
@@ -55,9 +56,9 @@ uv pip install -e .            # 01~02장: NumPy, OpenCV, Matplotlib
 |---|---|---|
 | `dl` | 03~06 | `uv pip install -e ".[dl]"` |
 | `foundation` | 06~09 | `uv pip install -e ".[foundation]"` |
-| `ocr` | 10 | `uv pip install -e ".[ocr]"` |
-| `vlm` | 11, 13, 15~17 | `uv pip install -e ".[vlm]"` |
-| `deploy` | 12 | `uv pip install -e ".[deploy]"` |
+| `ocr` | 16 (번호판·Hybrid 프로젝트) | `uv pip install -e ".[ocr]"` |
+| `vlm` | 10, 12, 14~16 | `uv pip install -e ".[vlm]"` |
+| `deploy` | 11 | `uv pip install -e ".[deploy]"` |
 
 PyTorch는 GPU·CUDA 버전에 맞는 빌드를 먼저 설치하는 편이 안전합니다. 설치 명령은 [PyTorch 공식 안내](https://pytorch.org/get-started/locally/)를 따르세요.
 
@@ -71,7 +72,7 @@ python data/download_samples.py
 ## 실행 환경
 
 - Python 3.11 (3.10 이상)
-- NVIDIA GPU 권장: 03~09장 VRAM 8GB 이상, 11장 VLM은 16GB 이상
+- NVIDIA GPU 권장: 03~09장 VRAM 8GB 이상, 10장 VLM은 16GB 이상
 - GPU가 없다면 01~02장은 CPU로 충분하고, 나머지는 Google Colab에서 실행할 수 있습니다
 
 ## 라이선스

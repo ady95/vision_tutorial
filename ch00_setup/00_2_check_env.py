@@ -24,9 +24,9 @@ PACKAGES = [
     ("ultralytics", "Ultralytics", "04~"),
     ("transformers", "Transformers", "06~"),
     ("open_clip", "OpenCLIP", "07"),
-    ("faiss", "FAISS", "07, 17"),
-    ("paddleocr", "PaddleOCR", "10"),
-    ("onnxruntime", "ONNX Runtime", "12"),
+    ("faiss", "FAISS", "07, 16"),
+    ("paddleocr", "PaddleOCR", "16"),
+    ("onnxruntime", "ONNX Runtime", "11"),
 ]
 
 

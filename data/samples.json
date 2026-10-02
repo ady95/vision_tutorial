@@ -11,6 +11,6 @@
     "url": "http://images.cocodataset.org/val2017/000000039769.jpg",
     "source": "COCO val2017 #39769",
     "license": "COCO 이미지 이용 약관 (Flickr 원저작자 라이선스)",
-    "used_in": ["07-1", "11-3"]
+    "used_in": ["07-1", "10-3"]
   }
 ]
