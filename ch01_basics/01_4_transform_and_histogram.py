@@ -59,4 +59,7 @@ for name, g in [("equalizeHist", eq), ("CLAHE", clahe)]:
     print(f"{name:<12} 평균 {g.mean():6.1f} | 표준편차 {g.std():5.1f} | 범위 {g.min()}~{g.max()}")
 hist = cv2.calcHist([dark], [0], None, [256], [0, 256]).ravel()
 print("어둡게 한 이미지에서 실제로 쓰인 밝기 단계:", int((hist > 0).sum()), "/ 256")
+for name, g in [("equalizeHist", eq), ("CLAHE", clahe)]:
+    levels = np.unique(g)
+    print(f"{name:<12} 결과의 밝기 단계 {len(levels)}개 | 이웃한 단계 사이 간격 최대 {np.diff(levels).max()}")
 cv2.imwrite(str(OUT / "01_4_dark_eq_clahe.jpg"), np.hstack([dark, eq, clahe]))

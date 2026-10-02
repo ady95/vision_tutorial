@@ -69,8 +69,8 @@ print(f"면적 100 이상만 세면: {(areas >= 100).sum()}개")
 # 4. Hough Transform — 구멍(원)과 가장자리(직선)
 circles = cv2.HoughCircles(blur, cv2.HOUGH_GRADIENT, dp=1.2, minDist=50,
                            param1=120, param2=25, minRadius=12, maxRadius=30)
-print(f"\nHoughCircles: {0 if circles is None else circles.shape[1]}개",
-      [] if circles is None else [tuple(np.round(x, 1)) for x in circles[0]])
+found = [] if circles is None else [[round(float(v), 1) for v in c] for c in circles[0]]
+print(f"\nHoughCircles: {len(found)}개 [x, y, 반지름] {found}")
 lines = cv2.HoughLinesP(canny, 1, np.pi / 180, threshold=60, minLineLength=80, maxLineGap=5)
 lines = lines.reshape(-1, 4)                    # OpenCV 4.x는 (N, 1, 4), 5.x는 (N, 4)로 돌려준다
 longest = max(lines, key=lambda l: math.hypot(l[2] - l[0], l[3] - l[1]))

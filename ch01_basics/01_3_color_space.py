@@ -15,7 +15,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 img = cv2.imread(str(ROOT / "data" / "images" / "bus.jpg"))
 x, y = 520, 560                                       # 버스 옆면(파란색)
 
-# 1. 같은 Pixel을 네 가지 Color Space로 보기
+# 1. 같은 Pixel을 다섯 가지 Color Space로 보기
 gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
 lab = cv2.cvtColor(img, cv2.COLOR_BGR2LAB)
