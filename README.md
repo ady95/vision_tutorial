@@ -46,7 +46,7 @@ cd vision_tutorial
 [uv](https://docs.astral.sh/uv/) 사용을 권장합니다.
 
 ```bash
-uv venv --python 3.11
+uv venv --python 3.12
 uv pip install -e .            # 01~02장: NumPy, OpenCV, Matplotlib
 ```
 
@@ -71,7 +71,7 @@ python data/download_samples.py
 
 ## 실행 환경
 
-- Python 3.11 (3.10 이상)
+- Python 3.12 (3.10 이상)
 - NVIDIA GPU: RTX 3060 12GB 기준으로 검증합니다. 24GB가 필요한 예제(Qwen3.5-9B 등)는 RTX 3090 24GB에서 검증했으며, 해당 README에 표시하고 12GB 대안을 함께 적습니다
 - vLLM 예제(10장~)는 Linux + NVIDIA GPU 환경을 기준으로 합니다
 - GPU가 없다면 01~02장은 CPU로 충분하고, 나머지는 Google Colab에서 실행할 수 있습니다
