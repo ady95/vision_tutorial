@@ -7,6 +7,7 @@ data/samples.json에 적힌 파일을 data/ 아래로 내려받는다.
     python data/download_samples.py
 """
 import json
+import shutil
 import sys
 import urllib.request
 from pathlib import Path
@@ -22,8 +23,10 @@ MANIFEST = DATA_DIR / "samples.json"
 def download(url, dest):
     dest.parent.mkdir(parents=True, exist_ok=True)
     request = urllib.request.Request(url, headers={"User-Agent": "vision-tutorial"})
-    with urllib.request.urlopen(request, timeout=60) as response:
-        dest.write_bytes(response.read())
+    tmp = dest.with_suffix(dest.suffix + ".part")                   # 받다가 끊기면 반쪽 파일이 남지 않게
+    with urllib.request.urlopen(request, timeout=60) as response, open(tmp, "wb") as f:
+        shutil.copyfileobj(response, f)                            # 영상(약 43MB)도 메모리에 다 올리지 않고 저장
+    tmp.replace(dest)
 
 
 def main():
