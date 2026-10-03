@@ -42,6 +42,7 @@ python data/download_samples.py    # bus.jpg, coco_cats.jpg, 교통 영상(data/
 | `--span 0.2 1.0` | 기준선을 화면 폭의 일부(선분)로 제한. 도로 밖 주차 차량을 세지 않게 |
 | `--tracker botsort.yaml` | 추적기 선택 (기본 bytetrack.yaml) |
 | `--agnostic` | 클래스가 달라도 겹친 박스는 하나만 (car·truck 이중 검출 방지) |
+| `--nms-free` | YOLO26의 one-to-one 출력을 NMS 없이 사용 (도서 06-2에서 비교) |
 | `--events 경로.csv` | 통과 기록(프레임, ID, 방향, 클래스, x) 저장 — 정답과 대조할 때 |
 | `--save 경로.mp4` | 기준선·ID·누적 대수를 그린 결과 영상 저장 |
 

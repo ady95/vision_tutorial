@@ -23,9 +23,13 @@ dl = [
     "ultralytics>=8.4",
     "lap",
 ]
+# 06장부터: timm(ViT·Swin), transformers(DETR), scipy(헝가리안 매칭), pycocotools(COCO mAP)
 foundation = [
     "torch",
     "torchvision",
+    "timm",
+    "scipy",
+    "pycocotools",
     "transformers",
     "accelerate",
     "open-clip-torch",

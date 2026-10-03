@@ -24,6 +24,7 @@ ap.add_argument("--model", default="yolo26s.pt")
 ap.add_argument("--tracker", default="bytetrack.yaml", help="bytetrack.yaml 또는 botsort.yaml")
 ap.add_argument("--imgsz", type=int, default=640)
 ap.add_argument("--agnostic", action="store_true", help="클래스가 달라도 크게 겹친 박스는 하나만 남긴다 (car와 truck으로 이중 검출될 때)")
+ap.add_argument("--nms-free", action="store_true", help="YOLO26의 one-to-one 출력을 NMS 없이 그대로 쓴다 (06-2)")
 ap.add_argument("--events", default="", help="통과 기록을 저장할 CSV 경로 (정답과 대조할 때)")
 ap.add_argument("--save", default="", help="기준선·ID·누적 대수를 그린 영상을 저장할 경로 (.mp4, 저장하는 만큼 느려진다)")
 args = ap.parse_args()
@@ -39,7 +40,7 @@ classes = defaultdict(Counter)                              # ID별 클래스 �
 frames_seen = Counter()
 n, t0, line_y, span, writer = 0, time.perf_counter(), None, None, None
 for r in model.track(args.video, stream=True, persist=True, tracker=args.tracker, classes=VEHICLES,
-                     imgsz=args.imgsz, agnostic_nms=args.agnostic, device=device, verbose=False):
+                     imgsz=args.imgsz, agnostic_nms=args.agnostic, nms=False if args.nms_free else None, device=device, verbose=False):
     n += 1
     if line_y is None:
         line_y = r.orig_shape[0] * args.line
@@ -72,7 +73,7 @@ sec = time.perf_counter() - t0
 if writer is not None:
     writer.release()
 
-print(f"{args.video} | {args.model} + {args.tracker} | imgsz {args.imgsz}{' | agnostic NMS' if args.agnostic else ''}")
+print(f"{args.video} | {args.model} + {args.tracker} | imgsz {args.imgsz}{' | agnostic NMS' if args.agnostic else ''}{' | NMS-free' if args.nms_free else ''}")
 print(f"{n}프레임, {sec:.1f}초 (초당 {n / sec:.1f}프레임) | 기준선 y={line_y:.0f}, x={span[0]:.0f}~{span[1]:.0f}")
 print(f"추적 ID {len(frames_seen)}개 | 10프레임 미만으로 끊긴 ID {sum(v < 10 for v in frames_seen.values())}개")
 total = Counter(counted.values())
