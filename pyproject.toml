@@ -15,11 +15,13 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+# ultralytics 8.4.171로 실측 (04~05장). lap는 05장 Tracking에서 쓴다
 dl = [
     "torch",
     "torchvision",
     "timm",
-    "ultralytics",
+    "ultralytics>=8.4",
+    "lap",
 ]
 foundation = [
     "torch",
