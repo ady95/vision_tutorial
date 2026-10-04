@@ -17,6 +17,7 @@ data/datasets/
 data/parts/
 data/parts_train/
 data/parts_det/
+data/parts_det_auto/
 data/own_cars/
 data/own_cars2/
 data/own_video/
