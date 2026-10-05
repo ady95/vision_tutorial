@@ -64,6 +64,6 @@ python data/download_samples.py      # bus.jpg, coco_cats.jpg, 05-5의 교통 �
 
 ## 소요 시간
 
-- 10-4 COCO 1,985문항: 2B 약 50분, 9B 약 76분 (`--skip-coco`로 건너뜀)
+- 10-4 COCO 1,985문항: 2B 약 50분, 4B 약 89분(RTX 3060), 9B 약 76분(RTX 3090) (`--skip-coco`로 건너뜀)
 - 10-7 POPE 4,410문항: 모델마다 수십 분
 - 나머지: 각 1~3분
