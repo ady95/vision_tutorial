@@ -49,6 +49,7 @@ vlm = [
 ]
 deploy = [
     "onnx",
+    "onnxslim",
     "onnxruntime",
 ]
 
