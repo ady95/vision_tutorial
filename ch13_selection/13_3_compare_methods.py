@@ -98,7 +98,7 @@ def vlm(url):
                        f"If there is no {cls}, output [].", [image], max_tokens=1024, base_url=url)["text"]
             w, h = image.size
             out[cls] = [[v[0] / 1000 * w, v[1] / 1000 * h, v[2] / 1000 * w, v[3] / 1000 * h]
-                        for v in ([float(x) for x in re.findall(r"-?\d+\.?\d*", m)] for m in re.findall(r'"bbox_2d"\s*:\s*\[([^\]]*)\]', text))
+                        for v in ([float(x) for x in re.findall(r"-?\d+\.?\d*", m)] for m in re.findall(r'"bbox_2d"\s*:\s*\[(.*?)\]', text))
                         if len(v) == 4]
         return out
     return run
