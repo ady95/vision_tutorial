@@ -40,3 +40,4 @@ Thumbs.db
 .idea/
 data/parts_bench/
 data/parts_stain/
+data/parts_seg/
