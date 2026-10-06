@@ -5,7 +5,6 @@
     "source": "Ultralytics 예제 이미지 (github.com/ultralytics/assets)",
     "license": "AGPL-3.0 (Ultralytics assets 저장소)",
     "used_in": [
-      "00-3",
       "04-3",
       "05-1",
       "05-2",
@@ -30,6 +29,7 @@
     "source": "Pexels \"Traffic Flow In The Highway\" (Mike Bird) https://www.pexels.com/video/traffic-flow-in-the-highway-2103099/",
     "license": "Pexels License (무료 사용·수정 가능, 저장소에 재배포하지 않고 원 주소에서 내려받음)",
     "used_in": [
+      "00-3",
       "05-5"
     ]
   }
