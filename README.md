@@ -28,6 +28,7 @@
 | [ch14_hybrid](ch14_hybrid) | 14. Hybrid Vision System | Cascade, Routing |
 | [ch15_agent](ch15_agent) | 15. Vision Agent | VLM Tool Calling |
 | [ch16_projects](ch16_projects) | 16. 실전 프로젝트 | 종합 프로젝트 4종 |
+| [appendix](appendix) | 부록 | 부록 E의 모델별 GPU 메모리 측정 |
 | [data](data) | 공통 | 샘플 이미지·영상 내려받기 |
 
 > OCR은 이 책에서 따로 다루지 않습니다. 문자 인식과 Document AI는 「OCR 따라하기」([도서](https://wikidocs.net/book/21475), [예제 코드](https://github.com/ady95/ocr_tutorial))를 참고하세요.
