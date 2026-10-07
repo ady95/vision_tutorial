@@ -78,6 +78,6 @@ python data/download_samples.py
 
 ## 라이선스
 
-- 이 저장소의 예제 코드: [MIT License](LICENSE)
+- 이 저장소의 예제 코드: [Apache License 2.0](LICENSE) (Copyright 2026 ady95)
 - 예제가 사용하는 라이브러리와 모델 가중치는 각자의 라이선스를 따릅니다. 예) Ultralytics YOLO는 AGPL-3.0, SAM·Qwen 등은 각 배포처의 라이선스를 확인하세요. 장별 README에 해당 장에서 쓰는 라이선스를 적어 둡니다.
 - 샘플 이미지·영상의 출처와 라이선스는 [data/samples.json](data/samples.json)에 기록합니다.

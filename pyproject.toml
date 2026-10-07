@@ -3,7 +3,7 @@ name = "vision-tutorial"
 version = "0.1.0"
 description = "Vision 알고리즘 따라하기 — OpenCV부터 YOLO·SAM·VLM까지 예제 코드"
 readme = "README.md"
-license = { text = "MIT" }
+license = { text = "Apache-2.0" }
 requires-python = ">=3.10"
 # 하한은 실측 버전 (2026-10-03, Ubuntu 22.04/24.04 · Python 3.12). 나머지 그룹은 각 장 실측 후 고정한다
 dependencies = [
