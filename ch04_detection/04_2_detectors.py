@@ -54,7 +54,7 @@ for name, builder, weights in [
 
 yolo = YOLO("yolo26s.pt")
 r, ms = timed(lambda: yolo(img, device=0 if device == "cuda" else "cpu", conf=args.conf, verbose=False)[0])
-rows.append(("YOLO26s (One-stage, 2025)", sum(p.numel() for p in yolo.model.parameters()), ms,
+rows.append(("YOLO26s (One-stage, 2026)", sum(p.numel() for p in yolo.model.parameters()), ms,
              dict(Counter(r.names[int(c)] for c in r.boxes.cls))))
 
 print(f"이미지 {Path(args.image).name} {img.shape[1]}x{img.shape[0]} | {device} | 신뢰도 {args.conf} 이상")

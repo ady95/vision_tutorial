@@ -10,7 +10,7 @@ uv pip install -e ".[dl,foundation]"
 
 Grounding DINO(IDEA-Research/grounding-dino-tiny·base), SAM 2.1, SAM 3는 transformers 구현을 씁니다.
 YOLOE(yoloe-26s-seg.pt)를 처음 실행하면 Ultralytics가 필요한 `clip` 패키지를 자동으로 설치합니다.
-09-3의 SAM 3는 08장 README의 접근 승인 절차가 필요합니다.
+09-3의 SAM 3는 08장 README의 접근 승인 절차가 필요합니다. 승인 전이면 `python ch09_open_vocab/09_3_text_to_mask.py --skip-sam3`로 Grounding DINO + SAM 2.1 경로만 실행합니다.
 
 ## 실습 데이터
 

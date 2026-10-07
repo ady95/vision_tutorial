@@ -6,7 +6,9 @@
 
 실행 (저장소 루트에서, data/download_coco_val.py·data/download_samples.py 실행 후, SAM 3는 08-4의 접근 승인 필요):
     python ch09_open_vocab/09_3_text_to_mask.py
+    python ch09_open_vocab/09_3_text_to_mask.py --skip-sam3        # SAM 3 승인 전: SAM 2.1 경로만
 """
+import argparse
 import json
 import random
 import time
@@ -26,13 +28,17 @@ ROOT = Path(__file__).resolve().parents[1]
 COCO_DIR = ROOT / "data" / "datasets" / "coco_val500"
 OUT = ROOT / "outputs" / "ch09"
 OUT.mkdir(parents=True, exist_ok=True)
+ap = argparse.ArgumentParser()
+ap.add_argument("--skip-sam3", action="store_true", help="SAM 3 접근 승인 전이면 SAM 2.1 경로만 실행")
+args = ap.parse_args()
 device = "cuda" if torch.cuda.is_available() else "cpu"
 gd_proc = AutoProcessor.from_pretrained("IDEA-Research/grounding-dino-base")
 gd = AutoModelForZeroShotObjectDetection.from_pretrained("IDEA-Research/grounding-dino-base").eval().to(device)
 sam2_proc = Sam2Processor.from_pretrained("facebook/sam2.1-hiera-base-plus")
 sam2 = Sam2Model.from_pretrained("facebook/sam2.1-hiera-base-plus").eval().to(device)
-sam3_proc = Sam3Processor.from_pretrained("facebook/sam3")
-sam3 = Sam3Model.from_pretrained("facebook/sam3").eval().to(device)
+if not args.skip_sam3:                                                    # 08-4의 접근 승인이 필요하다
+    sam3_proc = Sam3Processor.from_pretrained("facebook/sam3")
+    sam3 = Sam3Model.from_pretrained("facebook/sam3").eval().to(device)
 
 
 def text_to_mask_gdino_sam(image, text, sam_emb=None):
@@ -77,10 +83,13 @@ cap = cv2.VideoCapture(str(ROOT / "data" / "videos" / "traffic.mp4"))
 cap.set(cv2.CAP_PROP_POS_FRAMES, 1448)
 bgr = cap.read()[1]
 frame = Image.fromarray(cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB))
-for fn in [text_to_mask_gdino_sam, text_to_mask_sam3]:
+METHODS = {"G-DINO + SAM 2.1": (text_to_mask_gdino_sam, (0, 255, 255))}
+if not args.skip_sam3:
+    METHODS["SAM 3"] = (text_to_mask_sam3, (255, 255, 0))
+for fn, _ in METHODS.values():
     fn(frame, "red car")                                                  # 워밍업
 panels = []
-for name, fn, color in [("G-DINO + SAM 2.1", text_to_mask_gdino_sam, (0, 255, 255)), ("SAM 3", text_to_mask_sam3, (255, 255, 0))]:
+for name, (fn, color) in METHODS.items():
     sync()
     t = time.perf_counter()
     masks, scores, _ = fn(frame, "red car")
@@ -124,17 +133,17 @@ for a in inst["annotations"]:
     if not a["iscrowd"]:
         gt[a["image_id"]][names[a["category_id"]]].append(a)
 rng = random.Random(0)                                                     # 07-4·08-4·09-2와 같은 "없는 물체" 질문
-stats = {k: defaultdict(int) for k in ["G-DINO + SAM 2.1", "SAM 3"]}
+stats = {k: defaultdict(int) for k in METHODS}
 times = defaultdict(float)
 for im in inst["images"]:
     image = Image.open(COCO_DIR / "images" / im["file_name"]).convert("RGB")
     present = list(gt[im["id"]])
     absent = rng.choice([n for n in names.values() if n not in present])
-    cache = {"G-DINO + SAM 2.1": None, "SAM 3": None}
+    cache = {k: None for k in METHODS}
     for cls in present + [absent]:
         gts = [mask_utils.decode(mask_utils.frPyObjects(a["segmentation"], im["height"], im["width"])).max(axis=2).astype(bool)
                for a in gt[im["id"]][cls]] if cls != absent else []
-        for name, fn in [("G-DINO + SAM 2.1", text_to_mask_gdino_sam), ("SAM 3", text_to_mask_sam3)]:
+        for name, (fn, _) in METHODS.items():
             t = time.perf_counter()
             masks, _, cache[name] = fn(image, cls, cache[name])
             sync()

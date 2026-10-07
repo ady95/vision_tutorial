@@ -30,7 +30,7 @@ conv_params = sum(p.numel() for p in conv16.parameters())
 fc_params = (h * w) * (16 * h * w) + 16 * h * w          # 입력 화소 전부 x 출력 화소 전부 + bias
 print(f"\n입력 {h}x{w} 흑백 → 특징 지도 16장 ({h}x{w})")
 print(f"  Convolution 3x3: 파라미터 {conv_params:,}개")
-print(f"  Fully Connected : 파라미터 {fc_params:,}개 (float32로 {fc_params * 4 / 1024 ** 4:,.0f} TB)")
+print(f"  Fully Connected : 파라미터 {fc_params:,}개 (float32로 {fc_params * 4 / 1e12:,.1f} TB)")
 
 # 3. 블록을 지날 때마다 특징 지도는 작아지고, 한 화소가 보는 범위(Receptive Field)는 넓어진다
 x = torch.zeros(1, 3, 168, 224)

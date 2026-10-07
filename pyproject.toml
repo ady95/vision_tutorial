@@ -38,7 +38,7 @@ foundation = [
 ]
 # 16장 프로젝트(번호판 인식·Hybrid Pipeline)의 OCR 구성 요소
 ocr = [
-    "paddleocr",
+    "rapidocr",
 ]
 # Qwen3.5 — vLLM 서버는 Linux GPU 환경에 별도 설치 (pip install vllm)
 vlm = [

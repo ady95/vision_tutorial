@@ -7,6 +7,7 @@
 """
 import csv
 import random
+import sys
 import time
 from pathlib import Path
 
@@ -69,7 +70,7 @@ def make_loader(folder, rows, transform=None, shuffle=False, batch_size=32):
     g = torch.Generator()
     g.manual_seed(0)
     return DataLoader(PartsDataset(folder, rows, transform), batch_size=batch_size, shuffle=shuffle,
-                      num_workers=4, generator=g)
+                      num_workers=0 if sys.platform == "win32" else 4, generator=g)   # Windows는 작업 프로세스 없이
 
 
 def train(model, train_loader, val_loader, epochs, lr, device, log=True):

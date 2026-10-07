@@ -93,7 +93,12 @@ def make_multi(rng, out):
     img = 50 + rng.normal(0, 5, (H, W))
     img[mask > 0] = 200
     img = np.clip(cv2.GaussianBlur(img, (3, 3), 0) + rng.normal(0, 4, (H, W)), 0, 255).astype(np.uint8)
-    cv2.imwrite(str(out / "multi.png"), img)
+    save(out / "multi.png", img)
+
+
+def save(path, img):
+    if not cv2.imwrite(str(path), img):                            # 실패해도 예외가 나지 않으므로 직접 확인한다
+        raise SystemExit(f"저장 실패: {path} — Windows라면 경로에 한글이 없는 폴더로 저장소를 옮겨 실행하세요 (00-2)")
 
 
 def main():
@@ -113,8 +118,8 @@ def main():
         for i, label in enumerate(labels):
             img, mask, meta = make_image(rng, label, light)
             name = f"{i:03d}_{label}.png"
-            cv2.imwrite(str(out / light / name), img)
-            cv2.imwrite(str(out / light / "masks" / name), mask)
+            save(out / light / name, img)
+            save(out / light / "masks" / name, mask)
             rows.append(dict(light=light, file=f"{light}/{name}", label=label,
                              **{k: round(float(v), 2) for k, v in meta.items()}))
     with open(out / "labels.csv", "w", newline="", encoding="utf-8") as f:
